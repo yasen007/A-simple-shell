@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/08 18:20:48 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/12/02 21:09:19 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
-	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
-	}
-	free(line);
-}
+	size_t			i;
+	unsigned char	l;
+	unsigned char	*str;
 
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
+	i = 0;
+	l = (unsigned char)c;
+	str = (unsigned char *)s;
+	while (str[i] != l && n--)
+		i++;
+	if (str[i] == l && n)
+		return (str + i);
 	return (0);
 }

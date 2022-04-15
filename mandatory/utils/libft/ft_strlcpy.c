@@ -1,37 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strlcpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/10 18:37:28 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/23 23:15:27 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+size_t	ft_strlcpy(char *dst, const char *src, size_t dstsize)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
+	size_t	i;
+
+	i = ft_strlen(src);
+	if (i + 1 <= dstsize)
 	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
+		ft_memcpy(dst, (char *)src, i);
+		dst[i] = 0;
 	}
-	free(line);
-}
-
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
-	return (0);
+	else if (dstsize)
+	{
+		ft_memcpy(dst, (char *)src, dstsize - 1);
+		dst[dstsize - 1] = 0;
+	}
+	return (i);
 }

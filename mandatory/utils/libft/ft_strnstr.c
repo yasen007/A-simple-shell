@@ -1,37 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnstr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/10 20:43:20 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/23 21:21:27 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
+	int	i;
+	int	n;
+
+	if (!(*needle))
+		return ((char *)haystack);
+	while (*haystack && len)
 	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
+		i = 0;
+		n = len;
+		if (haystack[i] == needle[i])
+		{
+			while (haystack[i] == needle[i] && needle[i] && n)
+			{
+				i++;
+				n--;
+			}
+		}
+		if (needle[i] == '\0')
+			return ((char *)haystack);
+		haystack++;
+		len--;
 	}
-	free(line);
-}
-
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
-	return (0);
+	return (NULL);
 }

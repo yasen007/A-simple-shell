@@ -1,37 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/20 10:07:26 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/22 02:33:23 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+t_list	*ft_lstnew(void *content)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
-	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
-	}
-	free(line);
-}
+	t_list	*new;
 
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
-	return (0);
+	new = (t_list *)malloc(sizeof(t_list));
+	if (!new)
+		return (NULL);
+	new->content = content;
+	new->next = NULL;
+	return (new);
 }

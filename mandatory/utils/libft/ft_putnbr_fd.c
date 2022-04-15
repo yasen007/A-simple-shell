@@ -1,37 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/19 23:58:35 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/20 01:54:43 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+void	ft_putnbr_fd(int n, int fd)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
+	if (n < 0)
 	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
+		ft_putchar_fd('-', fd);
+		if (n == -2147483648)
+		{
+			ft_putstr_fd("2147483648", fd);
+		}
+		n = n * (-1);
 	}
-	free(line);
-}
-
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
-	return (0);
+	if (n >= 0 && n < 10)
+	{
+		ft_putchar_fd(n + '0', fd);
+	}
+	if (n >= 10)
+	{
+		ft_putnbr_fd(n / 10, fd);
+		ft_putnbr_fd(n % 10, fd);
+	}
 }

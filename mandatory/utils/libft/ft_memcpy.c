@@ -1,37 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memcpy.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/10 17:12:52 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/20 11:51:33 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+void	*ft_memcpy(void *dst, const void *src, size_t n)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
+	size_t			i;
+	char			*s;
+	char			*d;
+
+	i = 0;
+	s = (char *) src;
+	d = (char *) dst;
+	if (d == 0 && s == 0)
+		return (0);
+	while (n)
 	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
+		d[i] = s[i];
+		i++;
+		n--;
 	}
-	free(line);
-}
-
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
-	return (0);
+	return (d);
 }

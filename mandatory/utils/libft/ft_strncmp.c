@@ -1,37 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strncmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/09 16:10:01 by yelgharo          #+#    #+#             */
+/*   Updated: 2022/04/04 12:42:50 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
+	if (!s1 || !s2)
+		return (1);
+	while (n--)
 	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
+		if (*s1 != *s2 || *s1 == '\0' || *s2 == '\0')
+			return (*(unsigned char *)s1 - *(unsigned char *)s2);
+			s1++;
+			s2++;
 	}
-	free(line);
-}
-
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
 	return (0);
 }

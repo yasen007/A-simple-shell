@@ -1,37 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yelgharo <yelgharo@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/04/15 13:57:36 by yelgharo          #+#    #+#             */
-/*   Updated: 2022/04/15 13:59:21 by yelgharo         ###   ########.fr       */
+/*   Created: 2021/11/07 11:47:24 by yelgharo          #+#    #+#             */
+/*   Updated: 2021/11/23 21:37:54 by yelgharo         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"
+#include "libft.h"
 
-void	ft_prompt(char *line)
+char	*ft_strchr(const char *s, int c)
 {
-	write(1, "$> ", 3);
-	line = get_next_line(0);
-	if (!line)
-		perror("somthing went rong !!");
-	while (line)
-	{
-		write(1, "$> ", 3);
-		free(line);
-		line = get_next_line(0);
-	}
-	free(line);
-}
+	int		i;
+	char	l;
+	char	*str;
 
-int	main(void)
-{
-	char	*line;
-
-	line = NULL;
-	ft_prompt(line);
+	i = 0;
+	l = (char )c;
+	str = (char *)s;
+	while (str[i] && str[i] != l)
+		i++;
+	if (str[i] == l)
+		return (&str[i]);
 	return (0);
 }
