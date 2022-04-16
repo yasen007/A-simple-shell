@@ -28,7 +28,7 @@ void	ft_free(char **str)
 void	check_in(char *cmd)
 {
 	int i;
-	char *str;
+	char **str;
 
 	i = 0;
 	str = ft_split(cmd);

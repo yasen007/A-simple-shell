@@ -20,7 +20,7 @@ all : $(NAME)
 $(NAME) : $(OBJ)
 	@make -C $(LIBFT)
 	@make -C $(PRINTF)
-	@$(CC) $(CFLAGS) $(LIBFT)/libft.a $(PRINTF)/libftprintf.a $(OBJ) -lreadline -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT)/libft.a $(PRINTF)/libftprintf.a $(OBJ) -o $(NAME)
 
 clean:
 	@make clean -C $(LIBFT)
@@ -35,4 +35,4 @@ fclean : clean
 
 re : fclean all
 
-.PHONY : all clean fclean re
+.PHONY : all bonus clean fclean re

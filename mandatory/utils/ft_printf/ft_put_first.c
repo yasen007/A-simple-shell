@@ -62,7 +62,7 @@ void	ft_putnbr_d_i(int n, int *i)
 
 void	ft_putnbr_u(unsigned int n, int *i)
 {
-	if (n >= 0 && n < 10)
+	if (n < 10)
 	{
 		ft_putchar(n + 48, i);
 	}
