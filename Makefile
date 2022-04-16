@@ -15,12 +15,12 @@ OBJ = $(SRC:.c=.o)
 all : $(NAME)
 
 %.o:%.c
-	@$(CC) $(CFLAGS) -c $< -o $@
+	@$(CC) $(CFLAGS) -g -c $< -o $@
 	
 $(NAME) : $(OBJ)
 	@make -C $(LIBFT)
 	@make -C $(PRINTF)
-	@$(CC) $(CFLAGS) $(LIBFT)/libft.a $(PRINTF)/libftprintf.a $(OBJ) -o $(NAME)
+	@$(CC) $(CFLAGS) $(LIBFT)/libft.a $(PRINTF)/libftprintf.a $(OBJ) -lreadline -o $(NAME)
 
 clean:
 	@make clean -C $(LIBFT)
